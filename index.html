@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduShare | Student and Teacher Login</title>
+  <link rel="stylesheet" href="login.css">
+  <style>
+    .resend-action-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 14px;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .resend-action-btn:hover {
+      background: var(--blue);
+    }
+    .select-input {
+      width: 100%;
+      height: 50px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 0 14px;
+      font: inherit;
+      color: var(--text);
+      background-color: var(--white);
+    }
+  </style>
+  <link rel="icon" type="image/png" href="/image/Favicon.png">
+</head>
+<body>
+
+    <main class="login-wrapper">
+
+        <!-- LEFT SIDE -->
+        <section class="welcome-panel">
+            <div class="welcome-content">
+
+                <h1>Welcome</h1>
+
+                <div class="gold-line"></div>
+
+                <h2>
+                    University of the Assumption<br>
+                    EduShare<br>
+                    Learning & Quiz Platform
+                </h2>
+
+                <p>
+                    Create quizzes and mock exams with ease. Generate practice questions from your lesson notes,
+                    customize your quiz, and test your knowledge to prepare for your exams.
+                </p>
+
+                <div class="welcome-tag">
+                    BIASA · MAGANACA · MAYAP
+                </div>
+
+            </div>
+        </section>
+
+        <!-- RIGHT SIDE -->
+        <section class="form-panel">
+
+            <form class="login-form" id="loginForm">
+
+                <h2>Sign in to your account</h2>
+
+                <p class="subtitle">
+                    Enter your credentials to access EduShare.
+                </p>
+
+                <!-- EMAIL -->
+                <div class="form-group">
+                    <label for="email">
+                        Student or Teacher Email
+                    </label>
+
+                    <div class="input-box">
+                        <svg class="input-icon"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="1.8"
+                             aria-hidden="true">
+                            <circle cx="12" cy="8" r="4"></circle>
+                            <path d="M4 21v-2a8 8 0 0 1 16 0v2"></path>
+                        </svg>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your student or teacher email"
+                            autocomplete="username"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <!-- PASSWORD -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+
+                    <div class="input-box">
+                        <svg class="input-icon"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="1.8"
+                             aria-hidden="true">
+                            <rect x="4" y="10" width="16" height="11" rx="2"></rect>
+                            <path d="M8 10V7a4 4 0 1 1 8 0v3"></path>
+                            <path d="M12 14v3"></path>
+                        </svg>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="togglePassword"
+                            aria-label="Show password"
+                            aria-pressed="false"
+                        >
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 aria-hidden="true">
+                                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- OPTIONS -->
+                <div class="form-options">
+                    <label class="remember" for="remember">
+                        <input
+                            type="checkbox"
+                            id="remember"
+                            name="remember"
+                        >
+                        <span>Remember me</span>
+                    </label>
+
+                    <a href="#" class="forgot-link" id="forgotPassword">
+                        Forgot password?
+                    </a>
+                </div>
+
+                <!-- LOGIN BUTTON -->
+                <button type="submit" class="login-button" id="loginSubmitBtn">
+                    <span>Log In</span>
+                    <span class="arrow" aria-hidden="true">→</span>
+                </button>
+
+                <p class="signup-prompt">
+                    Don't have an account?
+                    <button type="button" class="text-button" id="openSignup">Create an account</button>
+                </p>
+
+                <p class="signup-prompt" style="margin-top: 8px;">
+                    Need a verification link?
+                    <button type="button" class="text-button" id="openResendModal">Resend Verification</button>
+                </p>
+
+                <div
+                    class="message"
+                    id="message"
+                    role="status"
+                    aria-live="polite"
+                ></div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <!-- SIGN-UP MODAL PANEL -->
+    <section class="signup-panel" id="signupPanel" aria-hidden="true">
+        <div class="signup-card" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
+            <h2 id="signupTitle">Create EduShare Account</h2>
+            <p class="subtitle">Register as a student or teacher to access the EduShare platform.</p>
+
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" name="signupName"
+                           placeholder="Enter your full name" autocomplete="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupRole">Account Role</label>
+                    <select id="signupRole" name="signupRole" class="select-input" required>
+                        <option value="student" selected>Student</option>
+                        <option value="teacher">Teacher</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" name="signupEmail"
+                           placeholder="Enter your email address" autocomplete="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupPassword">Create Password</label>
+                    <input type="password" id="signupPassword" name="signupPassword"
+                           placeholder="At least 8 characters" minlength="8"
+                           autocomplete="new-password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword"
+                           placeholder="Re-enter your password" minlength="8"
+                           autocomplete="new-password" required>
+                </div>
+
+                <div class="message" id="signupMessage" role="status" aria-live="polite"></div>
+
+                <div class="signup-actions">
+                    <button type="submit" class="login-button" id="signupSubmitBtn">Create Account</button>
+                    <button type="button" class="cancel-button" id="closeSignup">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- FORGOT PASSWORD MODAL PANEL -->
+    <section class="signup-panel" id="forgotPanel" aria-hidden="true">
+        <div class="signup-card" role="dialog" aria-modal="true" aria-labelledby="forgotTitle">
+            <h2 id="forgotTitle">Reset Your Password</h2>
+            <p class="subtitle">Enter your registered EduShare email to receive a secure password recovery link.</p>
+
+            <form id="forgotForm">
+                <div class="form-group">
+                    <label for="forgotEmail">Email Address</label>
+                    <input type="email" id="forgotEmail" name="forgotEmail"
+                           placeholder="Enter your registered email address" autocomplete="email" required>
+                </div>
+
+                <div class="message" id="forgotMessage" role="status" aria-live="polite"></div>
+
+                <div class="signup-actions">
+                    <button type="submit" class="login-button" id="forgotSubmitBtn">Send Reset Link</button>
+                    <button type="button" class="cancel-button" id="closeForgot">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- RESEND VERIFICATION MODAL PANEL -->
+    <section class="signup-panel" id="resendPanel" aria-hidden="true">
+        <div class="signup-card" role="dialog" aria-modal="true" aria-labelledby="resendTitle">
+            <h2 id="resendTitle">Resend Verification Email</h2>
+            <p class="subtitle">Enter your registered email address to receive a fresh verification link.</p>
+
+            <form id="resendForm">
+                <div class="form-group">
+                    <label for="resendEmailInput">Email Address</label>
+                    <input type="email" id="resendEmailInput" name="resendEmailInput"
+                           placeholder="Enter your registered email address" autocomplete="email" required>
+                </div>
+
+                <div class="message" id="resendModalMessage" role="status" aria-live="polite"></div>
+
+                <div class="signup-actions">
+                    <button type="submit" class="login-button" id="resendSubmitBtn">Send Verification Link</button>
+                    <button type="button" class="cancel-button" id="closeResend">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+<script src="auth.js" defer></script>
+</body>
+</html>

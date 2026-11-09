@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduShare  | Smart Quiz Generator</title>
+  <link rel="stylesheet" href="generator.css">
+  <link rel="icon" type="image/png" href="/image/Favicon.png">
+</head>
+<body>
+
+<!-- QUIZ GENERATOR DASHBOARD -->
+<section id="dashboard">
+
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="EduShare home">
+      <img src="image/photo.png" alt="EduShare Logo" class="brand-logo">
+      <div>EduShare
+        <small>UNIVERSITY OF THE ASSUMPTION</small>
+      </div>
+    </a>
+
+    <nav class="ua-nav" aria-label="Main navigation">
+
+    </nav>
+
+    <div class="top-right">
+      <span class="signed-in" id="signedInAs"></span>
+
+      <!-- LOGOUT BUTTON -->
+      <button type="button" class="logout" id="logoutButton">
+        Log out
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="ua-hero" id="dashboardHome">
+      <div class="ua-hero-copy">
+        <div class="hero-kicker">UNIVERSITY OF THE ASSUMPTION · EDUSHARE</div>
+        <h1>UA transforms the way you <span>learn.</span></h1>
+        <p>Create smarter assessments, build effective reviewers, and prepare for exams designed for the UA community.</p>
+   
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="visual-orbit orbit-one"></div>
+        <div class="visual-orbit orbit-two"></div>
+
+        <div class="visual-panel panel-main">
+          <div class="visual-emblem">UA</div>
+          <strong>EDUSHARE </strong>
+          <small>LEARN · REVIEW · ACHIEVE</small>
+        </div>
+
+        <div class="visual-panel panel-mini">
+          <span>✓</span>
+          <div>
+            <strong>Secure Assessments</strong>
+
+          </div>
+        </div>
+
+        <div class="visual-panel panel-book">
+          <span aria-hidden="true">▤</span>
+          <div>
+            <strong>Smart Reviewers</strong>
+            <small>Built around your lessons</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-gold-accent"></div>
+    </section>
+
+    <section class="welcome-strip">
+      <div>
+        <span class="strip-label">BIASA · MAGANACA · MAYAP</span>
+        <h2>Learning with purpose. Assessing with confidence.</h2>
+      </div>
+      <p>Guided by UA’s dedication to quality education, strong values, and service to others.</p>
+    </section>
+
+
+
+    <section class="hero generator-heading">
+     
+      <h1>Upload your lesson and generate <span>learning materials.</span></h1>
+      <p>Choose a file or enter a prompt to prepare a quiz for study and review.</p>
+    </section>
+
+    <div class="mode-tabs" role="tablist" aria-label="Quiz input method">
+      <button class="tab active" data-mode="file" role="tab" aria-selected="true">By file</button>
+      <button class="tab" data-mode="prompt" role="tab" aria-selected="false">By prompt</button>
+    </div>
+
+    <section class="builder">
+
+      <div id="fileMode">
+        <div class="dropzone" id="dropzone">
+          <h3>Upload or drag and drop a file</h3>
+          <p>Choose your lesson material to get started</p>
+
+          <label class="upload-btn" for="lessonFile">Choose a file</label>
+
+          <input class="file-input" type="file" id="lessonFile"
+            accept=".txt,.pdf,.doc,.docx,.pptx,.png,.jpg,.jpeg">
+
+          <div id="fileName" class="hint">No file selected</div>
+        </div>
+
+        <div class="file-types">
+          <span>.pdf</span><span>.pptx</span><span>.doc</span>
+          <span>.docx</span><span>.txt</span><span>.png</span><span>.jpg</span>
+        </div>
+
+
+      </div>
+
+      <div id="promptMode" class="hidden">
+        <label for="promptText" style="font-weight:700;display:block;margin:0 0 10px">
+          What should your quiz be about?
+        </label>
+
+        <textarea id="promptText" class="prompt-area"
+          placeholder="Example: Create a 10 question quiz about basic healthcare that covers human anatomy, vital signs, common illnesses, and patient care."></textarea>
+
+        <p class="hint">Tip: Include your subject, important topics, and what you want students to practice.</p>
+      </div>
+
+      <div id="scanMode" class="hidden">
+        <div class="dropzone">
+          <div class="upload-icon" aria-hidden="true">▧</div>
+          <h3>Use a scan or photo of your notes</h3>
+          <p>Upload a JPG or PNG image of printed lesson material.</p>
+
+          <label class="upload-btn" for="scanFile">Choose scanned image</label>
+
+          <input class="file-input" type="file" id="scanFile"
+            accept=".png,.jpg,.jpeg,image/png,image/jpeg">
+
+          <div id="scanName" class="hint">No image selected</div>
+        </div>
+
+        <label for="scanText" style="display:block;font-weight:700;margin:18px 0 9px">
+          Extracted text / notes
+        </label>
+
+        <textarea id="scanText" class="prompt-area"
+          style="min-height:110px"
+          placeholder="For this demo, paste the text from your scan here. OCR can be connected in a later version."></textarea>
+      </div>
+
+      <div class="settings">
+
+        <div class="setting">
+          <label for="questionCount">Number of questions (1 - 50)</label>
+          <input type="number" id="questionCount" min="1" max="50" value="10" placeholder="Enter 1 - 50" required>
+        </div>
+
+        <div class="setting">
+          <label for="questionType">Question type</label>
+          <select id="questionType">
+            <option value="multiple">Multiple choice</option>
+            <option value="truefalse">True or false</option>
+            <option value="mixed">Mixed questions</option>
+          </select>
+        </div>
+
+        <div class="setting">
+          <label for="difficulty">Difficulty</label>
+          <select id="difficulty">
+            <option>Easy</option>
+            <option selected>Medium</option>
+            <option>Hard</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="generate-row">
+        <button class="primary" id="generateBtn"> Generate Quiz</button>
+      </div>
+
+      <div class="status" id="status" role="status" aria-live="polite"></div>
+
+      
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <strong>EduShare </strong> · University of the Assumption · Learning support prototype
+    <br>
+    <a href="https://web.ua.edu.ph/#enroll" target="_blank" rel="noopener">
+      Visit the official UA website
+    </a>
+  </footer>
+
+</section>
+
+<!-- AUTHENTICATION AND DASHBOARD SCRIPTS -->
+<script>
+  (async () => {
+    try {
+      const res = await fetch('/api/auth/me', {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' },
+        credentials: 'same-origin'
+      });
+      if (!res.ok) {
+        window.location.replace('index.html');
+        return;
+      }
+      const data = await res.json();
+      if (!data.authenticated || !data.user) {
+        window.location.replace('index.html');
+        return;
+      }
+      const signedInAs = document.getElementById('signedInAs');
+      if (signedInAs) {
+        const roleLabel = data.user.role === 'teacher' ? 'Teacher' : 'Student';
+        signedInAs.textContent = 'Welcome, ' + (data.user.fullName || data.user.email) + ' (' + roleLabel + ')';
+      }
+    } catch {
+      window.location.replace('index.html');
+    }
+
+    const logoutBtn = document.getElementById('logoutButton');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', async () => {
+        try {
+          await fetch('/api/auth/logout', {
+            method: 'POST',
+            credentials: 'same-origin'
+          });
+        } finally {
+          window.location.replace('index.html');
+        }
+      });
+    }
+  })();
+</script>
+<script src="script.js" defer></script>
+
+</body>
+</html>

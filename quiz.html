@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduShare | Active Assessment</title>
+  <link rel="stylesheet" href="generator.css">
+  <link rel="icon" type="image/png" href="/image/Favicon.png">
+</head>
+<body>
+
+<!-- MAIN EXAM CONTAINER -->
+<div id="quizContainer" class="quiz-exam-wrapper" tabindex="-1">
+
+<!-- ASSESSMENT HEADER -->
+<header class="topbar">
+  <a class="brand" href="generator.html" aria-label="EduShare home">
+   <img src="image/photo.png" alt="EduShare Logo" class="brand-logo">
+    <div>EduShare
+      <small>UNIVERSITY OF THE ASSUMPTION</small>
+    </div>
+  </a>
+
+  <div class="top-right">
+    <span class="signed-in" id="signedInAs"></span>
+    <span class="fs-status-pill" id="headerStatusPill">
+      <span class="fs-dot"></span>
+      <span>ASSESSMENT ENVIRONMENT</span>
+    </span>
+  </div>
+</header>
+
+<!-- MAIN CONTAINER -->
+<main class="assessment-container" id="quizMain" tabindex="-1">
+
+  <!-- 1. LOADING SCREEN -->
+  <section id="quizLoadingScreen" class="quiz-loader">
+    <div class="spinner" aria-hidden="true"></div>
+    <h2 style="color:var(--navy);margin:0 0 10px">Preparing Your Assessment</h2>
+    <p style="color:var(--muted);margin:0 0 16px;line-height:1.6">
+      EduShare is analyzing your lesson material and generating customized quiz questions...
+    </p>
+    <div class="hint">This usually takes just a few seconds.</div>
+  </section>
+
+  <!-- 2. ERROR / EMPTY SCREEN -->
+  <section id="quizErrorScreen" class="quiz-loader hidden">
+    <div style="font-size:48px;color:#b42318;margin-bottom:16px" aria-hidden="true">⚠️</div>
+    <h2 style="color:var(--navy);margin:0 0 10px" id="quizErrorTitle">No Active Quiz Found</h2>
+    <p style="color:var(--muted);margin:0 0 24px;line-height:1.6" id="quizErrorMessage">
+      We could not find an active quiz to load. Please return to the Quiz Generator to configure and generate your assessment.
+    </p>
+    <a href="generator.html" class="primary" style="display:inline-block;text-decoration:none;padding:12px 24px">
+      Return to Quiz Generator
+    </a>
+  </section>
+
+  <!-- 3. PRE-QUIZ LANDING SCREEN -->
+  <section id="preQuizScreen" class="start-card hidden">
+    <div class="start-card-header">
+      <div class="eyebrow" style="color:var(--blue);font-weight:700;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:6px">
+        ACADEMIC ASSESSMENT PROTOCOL
+      </div>
+      <h1 id="preQuizTitle">Ready to Begin Assessment</h1>
+      <div class="meta" id="preQuizSubtitle">University of the Assumption · EduShare Smart Evaluation</div>
+    </div>
+
+    <div class="quiz-specs">
+      <div class="spec-box">
+        <small>Questions</small>
+        <strong id="specCount">--</strong>
+      </div>
+      <div class="spec-box">
+        <small>Format</small>
+        <strong id="specType">--</strong>
+      </div>
+      <div class="spec-box">
+        <small>Difficulty</small>
+        <strong id="specDifficulty">--</strong>
+      </div>
+      <div class="spec-box">
+        <small>Lesson Source</small>
+        <strong id="specSource" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block">--</strong>
+      </div>
+    </div>
+
+    <div class="integrity-notice">
+      <h3>
+        <span aria-hidden="true"></span> Strict Full-Screen & Anti-Cheat Enforcement
+      </h3>
+      <ul>
+        <li><strong>Automatic Full Screen:</strong> full-screen mode on the quiz container.</li>
+        <li><strong>Instant Invalidation on Alt-Tab:</strong> switching tabs, minimizing, screenshotting and clicking onto another window or screen even <strong>once</strong> will immediately invalidate your entire quiz and wipe all progress.</li>
+      
+      </ul>
+    </div>
+
+    <div class="start-actions">
+      <button type="button" class="start-quiz-btn" id="startQuizBtn">
+        ▶ Start Quiz
+      </button>
+      <a href="generator.html" class="back-btn">
+        Cancel & Return
+      </a>
+    </div>
+  </section>
+
+  <!-- 4. ACTIVE QUIZ FORM SCREEN -->
+  <section id="activeQuizScreen" class="hidden">
+    <div class="active-quiz-centered-wrap">
+      <div class="assessment-bar">
+        <div>
+          <strong style="color:var(--navy);font-size:16px" id="activeQuizTitle">EduShare Assessment</strong>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px" id="activeQuizMeta"></div>
+        </div>
+        <div class="assessment-badge">
+          <span class="assessment-dot"></span>
+          <span>FULL-SCREEN ENFORCED</span>
+        </div>
+      </div>
+
+      <!-- Question Progress Bar & Tracker -->
+      <div class="q-progress-wrap">
+        <div class="q-progress-info">
+          <span id="questionStepText">Question 1 of 10</span>
+          <span id="questionProgressPct">10%</span>
+        </div>
+        <div class="q-progress-track">
+          <div class="q-progress-bar" id="quizProgressBar" style="width: 10%;"></div>
+        </div>
+      </div>
+
+      <form id="quizForm">
+        <div id="questions"></div>
+
+        <!-- Single-Question Navigation Controls -->
+        <div class="quiz-nav-row">
+          <button type="button" class="nav-btn prev-btn hidden" id="prevQuestionBtn">
+            ← Previous
+          </button>
+          <button type="button" class="primary nav-btn next-btn" id="nextQuestionBtn">
+            Next Question →
+          </button>
+          <button type="submit" class="submit-btn hidden" id="submitAnswersBtn">
+            Submit answers ✓
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- 5. QUIZ RESULTS SCREEN -->
+  <section id="quizResultsScreen" class="quiz-results hidden" style="margin-top:0">
+    <div class="results-head">
+      <h2>Assessment Complete</h2>
+      <div style="display:flex;gap:10px">
+        <button type="button" class="logout" id="exitFullscreenBtn" style="color:var(--navy);border-color:var(--line)">
+          Exit Full Screen
+        </button>
+        <a href="generator.html" class="primary" style="display:inline-flex;align-items:center;text-decoration:none;padding:9px 18px;font-size:13px">
+          Create Another Quiz
+        </a>
+      </div>
+    </div>
+
+    <div id="scoreBox" class="score" style="margin-top:20px" aria-live="polite"></div>
+
+    <div style="margin-top:26px">
+      <h3 style="color:var(--navy);margin-bottom:14px">Question Review & Explanations</h3>
+      <div id="reviewedQuestions"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <strong>EduShare </strong> · University of the Assumption · Academic Assessment Portal
+</footer>
+
+<!-- STRICT FULL-SCREEN ENFORCEMENT MODAL -->
+<div id="fullscreenModal" class="fs-modal-backdrop hidden" role="alertdialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+  <div class="fs-modal-card">
+    <div class="fs-modal-icon" aria-hidden="true">❌</div>
+    <h2 id="modalTitle">Full-Screen Mode Required</h2>
+    <p id="modalDesc">
+      Assessment progress has been completely locked and invalidated.
+      <br><br>
+      You pressed Alt+Tab, Esc, switched tabs, minimized the window, or clicked onto another screen. Under strict assessment protocols, window-switching is strictly prohibited and all answered questions have been invalidated.
+    </p>
+
+    <button type="button" class="restart-btn" id="restartQuizBtn">
+      ↻ Restart Quiz from Beginning
+    </button>
+  </div>
+</div>
+
+</div> <!-- /quizContainer -->
+
+<!-- AUTHENTICATION CHECK -->
+<script>
+  (async () => {
+    try {
+      const res = await fetch('/api/auth/me', {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' },
+        credentials: 'same-origin'
+      });
+      if (!res.ok) {
+        window.location.replace('index.html');
+        return;
+      }
+      const data = await res.json();
+      if (!data.authenticated || !data.user) {
+        window.location.replace('index.html');
+        return;
+      }
+      const signedInAs = document.getElementById('signedInAs');
+      if (signedInAs) {
+        const roleLabel = data.user.role === 'teacher' ? 'Teacher' : 'Student';
+        signedInAs.textContent = (data.user.fullName || data.user.email) + ' (' + roleLabel + ')';
+      }
+    } catch {
+      window.location.replace('index.html');
+    }
+  })();
+</script>
+
+<!-- ASSESSMENT SCRIPT -->
+<script src="quiz.js" defer></script>
+
+</body>
+</html>

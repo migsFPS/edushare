@@ -1,0 +1,647 @@
+:root {
+            --navy: #06265f;
+            --navy-dark: #031b49;
+            --blue: #087ed0;
+            --gold: #ffc400;
+            --text: #142b54;
+            --muted: #71819e;
+            --border: #d5deed;
+            --white: #ffffff;
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+            background:
+                linear-gradient(
+                    rgba(239, 246, 255, 0.82),
+                    rgba(239, 246, 255, 0.82)
+                ),
+                url("https://www.pacu.org.ph/wordpress/wp-content/uploads/2017/05/University-of-the-Assumption.jpeg") center / cover fixed no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 35px;
+        }
+
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 1500px;
+            min-height: 640px;
+            display: grid;
+            grid-template-columns: 1.15fr 0.95fr;
+            background: var(--white);
+            border: 1px solid rgba(215, 225, 241, 0.9);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(15, 39, 80, 0.13);
+        }
+
+
+        /* LEFT WELCOME PANEL */
+
+
+        .welcome-panel {
+            position: relative;
+            display: flex;
+            align-items: center;
+            min-height: 640px;
+            padding: 55px;
+            color: var(--white);
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(3, 28, 76, 0.98) 0%,
+                    rgba(3, 35, 87, 0.90) 35%,
+                    rgba(3, 35, 87, 0.34) 100%
+                ),
+                url("https://www.pacu.org.ph/wordpress/wp-content/uploads/2017/05/University-of-the-Assumption.jpeg") center / cover no-repeat;
+        }
+
+
+        .welcome-content {
+            max-width: 460px;
+            position: relative;
+            z-index: 1;
+        }
+
+
+        .welcome-content h1 {
+            margin: 0;
+            font-size: clamp(36px, 3.5vw, 58px);
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+        }
+
+
+        .gold-line {
+            width: 100px;
+            height: 5px;
+            background: var(--gold);
+            margin: 20px 0 24px;
+        }
+
+
+        .welcome-content h2 {
+            font-size: 24px;
+            line-height: 1.4;
+            margin: 0 0 18px;
+        }
+
+
+        .welcome-content p {
+            font-size: 17px;
+            line-height: 1.8;
+            margin: 0;
+            color: #edf3ff;
+        }
+
+
+        .welcome-tag {
+            display: inline-block;
+            margin-top: 28px;
+            padding: 10px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 6px;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+
+        /* RIGHT LOGIN PANEL */
+
+
+        .form-panel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px;
+            background: #ffffff;
+        }
+
+
+        .login-form {
+            width: 100%;
+            max-width: 510px;
+        }
+
+
+        .login-form h2 {
+            margin: 0 0 10px;
+            font-size: clamp(27px, 2.4vw, 38px);
+            letter-spacing: -0.7px;
+            color: var(--navy);
+        }
+
+
+        .subtitle {
+            margin: 0 0 34px;
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+
+        .form-group > label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+
+        .input-box {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 56px;
+            padding: 0 15px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            background: #ffffff;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+
+        .input-box:focus-within {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(8, 126, 208, 0.10);
+        }
+
+
+        .input-icon {
+            width: 22px;
+            height: 22px;
+            margin-right: 13px;
+            color: #687d9f;
+            flex-shrink: 0;
+        }
+
+
+        .input-box input {
+            width: 100%;
+            min-width: 0;
+            height: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: var(--text);
+            font-size: 15px;
+        }
+
+
+        .input-box input::placeholder {
+            color: #8998b2;
+        }
+
+
+        .password-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            background: transparent;
+            color: #687d9f;
+            cursor: pointer;
+            padding: 7px;
+        }
+
+
+        .password-toggle svg {
+            width: 21px;
+            height: 21px;
+        }
+
+
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin: -2px 0 28px;
+            font-size: 14px;
+        }
+
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            cursor: pointer;
+        }
+
+
+        .remember input {
+            width: 17px;
+            height: 17px;
+            accent-color: var(--navy);
+            cursor: pointer;
+        }
+
+
+        a {
+            color: #087ed0;
+        }
+
+
+        .forgot-link {
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+
+        .login-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 13px;
+            width: 100%;
+            min-height: 57px;
+            border: none;
+            border-radius: 10px;
+            background: var(--navy);
+            color: var(--white);
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+
+        .login-button:hover {
+            background: #0b367f;
+        }
+
+
+        .login-button:active {
+            transform: scale(0.99);
+        }
+
+
+        .arrow {
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 29px 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: var(--border);
+        }
+
+
+        .support {
+            text-align: center;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+
+        .support p {
+            margin: 0;
+        }
+
+
+        .support a {
+            font-weight: 600;
+            text-underline-offset: 3px;
+        }
+
+
+        .message {
+            display: none;
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+
+        .message.show {
+            display: block;
+        }
+
+
+        .message.info {
+            color: #184d81;
+            background: #edf6ff;
+        }
+
+
+        .message.error {
+            color: #a61e2b;
+            background: #fff0f1;
+        }
+
+
+        /* RESPONSIVE DESIGN */
+
+
+        @media (max-width: 1000px) {
+            body {
+                padding: 22px;
+            }
+
+
+            .login-wrapper {
+                grid-template-columns: 1fr 1fr;
+                min-height: 570px;
+            }
+
+
+            .welcome-panel {
+                min-height: 570px;
+                padding: 32px;
+            }
+
+
+            .form-panel {
+                padding: 32px;
+            }
+
+
+            .welcome-content h2 {
+                font-size: 20px;
+            }
+
+
+            .welcome-content p {
+                font-size: 15px;
+            }
+        }
+
+
+        @media (max-width: 720px) {
+            body {
+                padding: 16px;
+                background-attachment: scroll;
+            }
+
+
+            .login-wrapper {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+                min-height: auto;
+                border-radius: 16px;
+            }
+
+
+            .welcome-panel {
+                min-height: 270px;
+                padding: 30px;
+                background-position: center;
+            }
+
+
+            .welcome-content h1 {
+                font-size: 36px;
+            }
+
+
+            .welcome-content h2 {
+                font-size: 19px;
+                margin-bottom: 10px;
+            }
+
+
+            .welcome-content p {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+
+            .gold-line {
+                margin: 13px 0 16px;
+            }
+
+
+            .welcome-tag {
+                margin-top: 16px;
+            }
+
+
+            .form-panel {
+                padding: 30px 24px;
+            }
+
+
+            .login-form h2 {
+                font-size: 28px;
+            }
+
+
+            .subtitle {
+                margin-bottom: 27px;
+            }
+        }
+
+
+        @media (max-width: 360px) {
+            .form-options {
+                align-items: flex-start;
+                font-size: 12px;
+            }
+
+
+            .welcome-panel {
+                padding: 23px;
+            }
+
+
+            .form-panel {
+                padding: 25px 18px;
+            }
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition: none !important;
+            }
+        }
+
+        /* SIGN UP LINK AND REGISTRATION */
+        .signup-prompt {
+            margin-top: 22px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .text-button {
+            border: 0;
+            background: transparent;
+            color: var(--blue);
+            padding: 4px;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .text-button:hover {
+            color: var(--navy);
+        }
+
+        .signup-panel {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 20;
+            padding: 20px;
+            background: rgba(3, 27, 73, 0.62);
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+        }
+
+        .signup-panel.show {
+            display: flex;
+        }
+
+        .signup-card {
+            width: 100%;
+            max-width: 500px;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 15px 45px rgba(15, 39, 80, 0.25);
+        }
+
+        .signup-card h2 {
+            margin: 0 0 8px;
+            color: var(--navy);
+        }
+
+        .signup-card .subtitle {
+            margin-bottom: 20px;
+        }
+
+        .signup-card .form-group {
+            margin-bottom: 16px;
+        }
+
+        .signup-card .form-group > label {
+            margin-bottom: 8px;
+        }
+
+        .signup-card input {
+            width: 100%;
+            height: 50px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 0 14px;
+            font: inherit;
+            color: var(--text);
+        }
+
+        .signup-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .signup-actions button {
+            flex: 1;
+        }
+
+        .cancel-button {
+            margin-top: 22px;
+            background: #eef3fb;
+            color: var(--navy);
+        }
+
+        /* DEMO DASHBOARD AFTER LOGIN */
+        .dashboard {
+            display: none;
+            width: 100%;
+            max-width: 1000px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .dashboard.show {
+            display: block;
+        }
+
+        .dashboard-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(15, 39, 80, 0.08);
+        }
+
+        .dashboard-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-top h2 {
+            margin: 0;
+            color: var(--navy);
+        }
+
+        .logout-button {
+            background: #fff0f1;
+            color: #a61e2b;
+            border: 1px solid #f3c8cc;
+        }
+
+        .logout-button:hover {
+            background: #ffe1e4;
+        }
+
+        .dashboard-note {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 520px) {
+            .signup-card {
+                padding: 22px;
+            }
+
+            .signup-actions {
+                flex-direction: column;
+            }
+
+            .signup-actions button {
+                width: 100%;
+            }
+        }

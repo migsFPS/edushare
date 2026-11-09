@@ -1,0 +1,38 @@
+{
+  "name": "edushare",
+  "version": "1.0.0",
+  "description": "EduShare - Open Educational Platform with Secure Authentication, Gmail Verification, and Smart Quiz Generator",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node tests/run-all-tests.js",
+    "add-favicon": "node add-favicon.js"
+  },
+  "keywords": [
+    "edushare",
+    "education",
+    "quiz-generator",
+    "authentication",
+    "argon2id",
+    "aes-256-gcm",
+    "gmail-smtp"
+  ],
+  "author": "EduShare Team",
+  "license": "ISC",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.2.0",
+    "@node-rs/argon2": "^2.0.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "nodemailer": "^10.4.0",
+    "ws": "^8.22.2"
+  }
+}
